@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PlaniGrid", "PlaniGrid\PlaniGrid.vbproj", "{43BD1769-6356-4B97-8181-97BB74EE8070}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestApplication", "TestApplication\TestApplication.vbproj", "{C13AF5BF-01D5-4C85-B941-1E6D19301E09}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PlaniCalendar", "PlaniCalendar\PlaniCalendar.vbproj", "{722B1BE2-333D-4F1C-8FED-4BC147FBBF23}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PlaniMonthView", "PlaniMonthView\PlaniMonthView.vbproj", "{C2C9D29A-596E-446E-9630-B81F7163F26E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43BD1769-6356-4B97-8181-97BB74EE8070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BD1769-6356-4B97-8181-97BB74EE8070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BD1769-6356-4B97-8181-97BB74EE8070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BD1769-6356-4B97-8181-97BB74EE8070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C13AF5BF-01D5-4C85-B941-1E6D19301E09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C13AF5BF-01D5-4C85-B941-1E6D19301E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C13AF5BF-01D5-4C85-B941-1E6D19301E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C13AF5BF-01D5-4C85-B941-1E6D19301E09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722B1BE2-333D-4F1C-8FED-4BC147FBBF23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722B1BE2-333D-4F1C-8FED-4BC147FBBF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722B1BE2-333D-4F1C-8FED-4BC147FBBF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722B1BE2-333D-4F1C-8FED-4BC147FBBF23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2C9D29A-596E-446E-9630-B81F7163F26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2C9D29A-596E-446E-9630-B81F7163F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2C9D29A-596E-446E-9630-B81F7163F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2C9D29A-596E-446E-9630-B81F7163F26E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

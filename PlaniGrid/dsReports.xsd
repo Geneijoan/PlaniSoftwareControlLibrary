@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsReports" targetNamespace="http://tempuri.org/dsReports.xsd" xmlns:mstns="http://tempuri.org/dsReports.xsd" xmlns="http://tempuri.org/dsReports.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsReports" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsReports" msprop:Generator_DataSetName="dsReports" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtGrid" msprop:Generator_UserTableName="dtGrid" msprop:Generator_RowDeletedName="dtGridRowDeleted" msprop:Generator_RowChangedName="dtGridRowChanged" msprop:Generator_RowClassName="dtGridRow" msprop:Generator_RowChangingName="dtGridRowChanging" msprop:Generator_RowEvArgName="dtGridRowChangeEvent" msprop:Generator_RowEvHandlerName="dtGridRowChangeEventHandler" msprop:Generator_TableClassName="dtGridDataTable" msprop:Generator_TableVarName="tabledtGrid" msprop:Generator_RowDeletingName="dtGridRowDeleting" msprop:Generator_TablePropName="dtGrid">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="c1" msprop:Generator_UserColumnName="c1" msprop:Generator_ColumnVarNameInTable="columnc1" msprop:Generator_ColumnPropNameInRow="c1" msprop:Generator_ColumnPropNameInTable="c1Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c2" msprop:Generator_UserColumnName="c2" msprop:Generator_ColumnVarNameInTable="columnc2" msprop:Generator_ColumnPropNameInRow="c2" msprop:Generator_ColumnPropNameInTable="c2Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c3" msprop:Generator_UserColumnName="c3" msprop:Generator_ColumnVarNameInTable="columnc3" msprop:Generator_ColumnPropNameInRow="c3" msprop:Generator_ColumnPropNameInTable="c3Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c4" msprop:Generator_UserColumnName="c4" msprop:Generator_ColumnVarNameInTable="columnc4" msprop:Generator_ColumnPropNameInRow="c4" msprop:Generator_ColumnPropNameInTable="c4Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c5" msprop:Generator_UserColumnName="c5" msprop:Generator_ColumnVarNameInTable="columnc5" msprop:Generator_ColumnPropNameInRow="c5" msprop:Generator_ColumnPropNameInTable="c5Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c6" msprop:Generator_UserColumnName="c6" msprop:Generator_ColumnVarNameInTable="columnc6" msprop:Generator_ColumnPropNameInRow="c6" msprop:Generator_ColumnPropNameInTable="c6Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c7" msprop:Generator_UserColumnName="c7" msprop:Generator_ColumnVarNameInTable="columnc7" msprop:Generator_ColumnPropNameInRow="c7" msprop:Generator_ColumnPropNameInTable="c7Column" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="c8" msprop:Generator_UserColumnName="c8" msprop:Generator_ColumnVarNameInTable="columnc8" msprop:Generator_ColumnPropNameInRow="c8" msprop:Generator_ColumnPropNameInTable="c8Column" type="xs:string" default="" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
