@@ -3512,8 +3512,12 @@ sortir:
             RaiseEvent PGMessage(T("INFORMACIÓ"), T("Element #") & pPGElement.Id & T(": Cal informar la data/hora final de l'element."))
             Return PGReturnCode.PGError
         End If
+        If pPGElement.Ends = pPGElement.Starts Then
+            RaiseEvent PGMessage(T("INFORMACIÓ"), T("Element #") & pPGElement.Id & T(": Data/hora inici i final de l'element són iguals."))
+            Return PGReturnCode.PGError
+        End If
 
-        'actualitzacio
+        'actualitzacio (element existent en grid)
         If vpLlistaElements.ContainsKey(pPGElement.Id) Then
             'valida solapament recursos
             If Not ValidaSolapaments(pPGElement) Then
@@ -3555,11 +3559,11 @@ sortir:
             RaiseEvent PGElement_Updated(pPGElement)
             Return PGReturnCode.PGUpdated
         Else
-            'alta
+            'alta (element inexistent en grid)
 
             'valida solapament recursos
             If Not ValidaSolapaments(pPGElement) Then
-                If prSolapaRecursExt Then
+                If prSolapaRecursExt And pPGElement.Id = "" Then
                     'si hi ha solapament i es permet en alta, netegem recursos de l'element
                     pPGElement.Resources = New Dictionary(Of String, Color)
                 Else
