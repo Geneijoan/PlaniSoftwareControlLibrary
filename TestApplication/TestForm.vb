@@ -213,4 +213,5 @@
         PrintForm.CrystalReportViewer1.ReportSource = PlaniGrid1.PGPrint("Text al peu")
         PrintForm.CrystalReportViewer1.Refresh()
     End Sub
+
 End Class

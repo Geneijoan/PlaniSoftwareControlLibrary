@@ -22,24 +22,24 @@ Partial Class TestForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TestForm))
-        Dim TextShadower1 As gCursorLib.TextShadower = New gCursorLib.TextShadower
-        Me.ListBox3 = New System.Windows.Forms.ListBox
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.ListBox2 = New System.Windows.Forms.ListBox
-        Me.aag = New System.Windows.Forms.CheckBox
-        Me.ListBox1 = New System.Windows.Forms.ListBox
+        Dim TextShadower1 As gCursorLib.TextShadower = New gCursorLib.TextShadower()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.aag = New System.Windows.Forms.CheckBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.DragCursor = New gCursorLib.gCursor(Me.components)
-        Me.PlaniMonthView1 = New PlaniSoftwareControlLibrary.PlaniMonthView
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.PlaniGrid1 = New PlaniSoftwareControlLibrary.PlaniGrid
+        Me.PlaniMonthView1 = New PlaniSoftwareControlLibrary.PlaniMonthView()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.PlaniGrid1 = New PlaniSoftwareControlLibrary.PlaniGrid()
         Me.SuspendLayout()
         '
         'ListBox3
         '
         Me.ListBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ListBox3.FormattingEnabled = True
         Me.ListBox3.Location = New System.Drawing.Point(12, 442)
         Me.ListBox3.Name = "ListBox3"
@@ -131,13 +131,13 @@ Partial Class TestForm
         Me.PlaniMonthView1.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.PlaniMonthView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PlaniMonthView1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.PlaniMonthView1.GridBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PlaniMonthView1.GridBackColor = System.Drawing.Color.White
         Me.PlaniMonthView1.Language = PlaniSoftwareControlLibrary.PlaniMonthView.Idiom.Català
         Me.PlaniMonthView1.Location = New System.Drawing.Point(12, 9)
         Me.PlaniMonthView1.MaximumSize = New System.Drawing.Size(234, 150)
         Me.PlaniMonthView1.MinimumSize = New System.Drawing.Size(234, 150)
         Me.PlaniMonthView1.Name = "PlaniMonthView1"
-        Me.PlaniMonthView1.SelectedDate = New Date(2016, 7, 10, 0, 0, 0, 0)
+        Me.PlaniMonthView1.SelectedDate = New Date(2018, 4, 21, 0, 0, 0, 0)
         Me.PlaniMonthView1.Size = New System.Drawing.Size(234, 150)
         Me.PlaniMonthView1.TabIndex = 22
         '
@@ -152,21 +152,20 @@ Partial Class TestForm
         '
         'PlaniGrid1
         '
-        Me.PlaniGrid1.AllowMultiDayElements = True
+        Me.PlaniGrid1.AllowMultiDayElements = False
         Me.PlaniGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PlaniGrid1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PlaniGrid1.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.PlaniGrid1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PlaniGrid1.DisplayDate = New Date(2016, 7, 10, 0, 0, 0, 0)
+        Me.PlaniGrid1.DisplayDate = New Date(2018, 4, 21, 0, 0, 0, 0)
         Me.PlaniGrid1.EndTimeOfDay = "22:00"
         Me.PlaniGrid1.ExtResourceOverlap = True
         Me.PlaniGrid1.GridBackColor = System.Drawing.SystemColors.Window
         Me.PlaniGrid1.HeaderBackColor = System.Drawing.SystemColors.ControlDark
         Me.PlaniGrid1.HeaderFontColor = System.Drawing.SystemColors.Window
         Me.PlaniGrid1.HLinesColor = System.Drawing.SystemColors.Control
-        Me.PlaniGrid1.Language = PlaniSoftwareControlLibrary.PlaniGrid.PGIdioma.English
+        Me.PlaniGrid1.Language = PlaniSoftwareControlLibrary.PlaniGrid.PGIdioma.Català
         Me.PlaniGrid1.LastWorkingDayOfWeek = System.DayOfWeek.Saturday
         Me.PlaniGrid1.Location = New System.Drawing.Point(252, 9)
         Me.PlaniGrid1.LunchTimeEnd = "15:00"

@@ -1410,6 +1410,7 @@ Public Class PlaniGrid
                     'RaiseEvent PGMessage(T("ERROR"), T("Error al actualitzar '") & auxPGElement.Name & "' (#" & auxPGElement.Id & ")")
                     GoTo sortir
                 End If
+
             End If
 
             'recuperem l'objecte del drag si es Recursos
@@ -1492,13 +1493,19 @@ sortir:
             'validem que l'element del drag tingui nom 
             If auxPGElement.Name <> "" Then
                 vaElementDrop = auxPGElement.Name
-
                 'si estem sobre una data del mes actual, mostrem o no el permís de drop
                 If auxData.Month = DisplayDate.Month Or VisualizationMode <> PGMode.Month Then
-                    If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
-                        e.Effect = DragDropEffects.Move
-                    Else
+                    'If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
+                    '    e.Effect = DragDropEffects.Move
+                    'Else
+                    '    e.Effect = DragDropEffects.Copy
+                    'End If
+
+                    'efecte copy si el drag nomes té copy o si tenim pulsat ctrl
+                    If ((e.AllowedEffect And DragDropEffects.Copy) = DragDropEffects.Copy And Not (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Or (e.KeyState And 8) = 8 Then
                         e.Effect = DragDropEffects.Copy
+                    Else
+                        e.Effect = DragDropEffects.Move
                     End If
                 Else
                     e.Effect = DragDropEffects.None
@@ -1526,10 +1533,15 @@ sortir:
                         auxStr = ObtenirSeleccio(auxPunt)
                     End If
                     If auxStr <> "" Then
-                        If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
-                            e.Effect = DragDropEffects.Move
-                        Else
+                        'If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
+                        '    e.Effect = DragDropEffects.Move
+                        'Else
+                        '    e.Effect = DragDropEffects.Copy
+                        'End If
+                        If ((e.KeyState And 8) = 8 And (e.AllowedEffect And DragDropEffects.Copy) = DragDropEffects.Copy) Then
                             e.Effect = DragDropEffects.Copy
+                        Else
+                            e.Effect = DragDropEffects.Move
                         End If
                     Else
                         e.Effect = DragDropEffects.None
@@ -1575,11 +1587,19 @@ sortir:
             If auxCoord.X > 0 And auxCoord.Y > 0 And (auxData.Month = DisplayDate.Month Or VisualizationMode <> PGMode.Month) Then
 
                 If VisualizationMode = PGMode.Day Then
-                    If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
-                        e.Effect = DragDropEffects.Move
-                    Else
+                    'If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
+                    '    e.Effect = DragDropEffects.Move
+                    'Else
+                    '    e.Effect = DragDropEffects.Copy
+                    'End If
+
+                    'efecte copy si el drag nomes té copy o si tenim pulsat ctrl
+                    If ((e.AllowedEffect And DragDropEffects.Copy) = DragDropEffects.Copy And Not (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Or (e.KeyState And 8) = 8 Then
                         e.Effect = DragDropEffects.Copy
+                    Else
+                        e.Effect = DragDropEffects.Move
                     End If
+
                     'obtenim el recurs sobre el que estem (mode dia)
                     auxRecurs = ObtenirRecursSeleccio(auxPunt)
                     If auxRecurs.Name = "" Then
@@ -1605,10 +1625,15 @@ sortir:
             End If
 
             If auxCoord.X > 0 And auxCoord.Y > 0 And VisualizationMode <> PGMode.Month And auxStr <> "" Then
-                If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
-                    e.Effect = DragDropEffects.Move
-                Else
+                'If ((e.KeyState And 4) = 4 And (e.AllowedEffect And DragDropEffects.Move) = DragDropEffects.Move) Then
+                '    e.Effect = DragDropEffects.Move
+                'Else
+                '    e.Effect = DragDropEffects.Copy
+                'End If
+                If ((e.KeyState And 8) = 8 And (e.AllowedEffect And DragDropEffects.Copy) = DragDropEffects.Copy) Then
                     e.Effect = DragDropEffects.Copy
+                Else
+                    e.Effect = DragDropEffects.Move
                 End If
             Else
                 e.Effect = DragDropEffects.None
@@ -2604,27 +2629,6 @@ sortir:
         Dim auxheight As Integer
         Dim auxstr As String
         Dim auxelementcella As ElementsCella
-        'Dim auxFontBold As Font
-        'Dim auxFontItalic As Font
-        'Dim auxFontBoldItalic As Font
-
-        'Try
-        '    auxFontBold = New Font(Font, FontStyle.Bold)
-        'Catch ex As Exception
-        '    auxFontBold = Font
-        'End Try
-
-        'Try
-        '    auxFontItalic = New Font(Font, FontStyle.Italic)
-        'Catch ex As Exception
-        '    auxFontItalic = Font
-        'End Try
-
-        'Try
-        '    auxFontBoldItalic = New Font(Font, FontStyle.Italic Or FontStyle.Bold)
-        'Catch ex As Exception
-        '    auxFontBoldItalic = auxFontItalic
-        'End Try
 
         'calculem els salts de dia de l'interval (-1" a final per si és les 00:00h. del dia seguent)
         auxIntervalDies = DateDiff(DateInterval.Day, pElement.Starts.Date, DateAdd(DateInterval.Second, -1, pElement.Ends))
@@ -2651,9 +2655,15 @@ sortir:
             'per evitar possibles errors
             If auxDataHoraInici <= auxDataHoraFinal Then
 
+                '<-* la duració mínima que mostrem és el mínim de la grid
+                'If auxDataHoraInici = auxDataHoraFinal Then
+                '    auxDataHoraFinal = DateAdd(DateInterval.Minute, MinutesGap, auxDataHoraInici)
+                'End If
+
                 'calculem les coordenades de l'element en la graella
                 auxPuntIni = DeDataHoraAPosicio(auxDataHoraInici, True)
                 auxPuntFi = DeDataHoraAPosicio(auxDataHoraFinal, False)
+
 
                 'només pintem els visibles
                 If auxDataHoraFinal > vaDataHoraIniPer And auxDataHoraInici <= vaDataHoraFiPer Then
@@ -3445,6 +3455,12 @@ sortir:
     Private Function PGGridElementAddUpdate(ByRef pPGElement As PGElement) As PGReturnCode
         Dim auxTimeSpan As TimeSpan
 
+        'no permetem elements sense durada
+        If pPGElement.Ends = pPGElement.Starts Then
+            RaiseEvent PGMessage(T("INFORMACIÓ"), T("Element #") & pPGElement.Id & T(": Data/hora inici i final de l'element són iguals."))
+            Return PGReturnCode.PGError
+        End If
+
         'actualitzem l'inici segons el periode d'activitat diaria
         auxTimeSpan = pPGElement.Starts.TimeOfDay - prHoraIniciActivitat
         If auxTimeSpan < TimeSpan.Zero Then
@@ -3462,7 +3478,7 @@ sortir:
         'si no es permet que els elements sobrepassin un dia
         If Not prPermetreElementsEntreDies Then
             If pPGElement.Starts.TimeOfDay < prHoraIniciActivitat Or pPGElement.Ends.TimeOfDay > prHoraFiActivitat Or pPGElement.Starts.Date <> pPGElement.Ends.Date Then
-                RaiseEvent PGMessage(T("INFORMACIÓ"), T("No es pot sobrepassar l'horari ") & Mid(prHoraIniciActivitat.ToString, 1, 5) & "->" & Mid(prHoraFiActivitat.ToString, 1, 5))
+                RaiseEvent PGMessage(T("INFORMACIÓ"), T("Element #") & pPGElement.Id & T(" No es pot sobrepassar l'horari ") & Mid(prHoraIniciActivitat.ToString, 1, 5) & "->" & Mid(prHoraFiActivitat.ToString, 1, 5))
                 Return PGReturnCode.PGError
             End If
         End If
@@ -3499,7 +3515,7 @@ sortir:
 
     'altes i modificacions des de programes externs 
     '(respectem hora inici i final encara que estiguin fora del periode d'activitat)
-    ' si prSolapaRecursExt i es solapa en alta, blanquejem recurs
+    'si prSolapaRecursExt i es solapa en alta, blanquejem recurs
     Public Function PGElementAddUpdate(ByRef pPGElement As PGElement) As PGReturnCode
         Dim auxbool As Boolean = False
 
