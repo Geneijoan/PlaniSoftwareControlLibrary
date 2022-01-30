@@ -11,8 +11,8 @@
         English
     End Enum
 
-    Dim DiesSetmanaCurts() As String = {"dg", "dl", "dm", "dc", "dj", "dv", "ds"}
-    Dim Mesos() As String = {"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"}
+    ReadOnly DiesSetmanaCurts() As String = {"dg", "dl", "dm", "dc", "dj", "dv", "ds"}
+    ReadOnly Mesos() As String = {"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"}
 
 #End Region
 

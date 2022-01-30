@@ -412,10 +412,10 @@ Public Class PlaniGrid
 
 #Region "Constants"
 
-    Dim DiesSetmanaCurts() As String = {"dg", "dl", "dm", "dc", "dj", "dv", "ds"}
-    Dim DiesSetmana() As String = {"diumenge", "dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte"}
-    Dim Mesos() As String = {"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"}
-    Dim MesosCurts() As String = {"Gen", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Des"}
+    ReadOnly DiesSetmanaCurts() As String = {"dg", "dl", "dm", "dc", "dj", "dv", "ds"}
+    ReadOnly DiesSetmana() As String = {"diumenge", "dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte"}
+    ReadOnly Mesos() As String = {"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"}
+    ReadOnly MesosCurts() As String = {"Gen", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Des"}
 
 #End Region
 
@@ -448,16 +448,16 @@ Public Class PlaniGrid
     Dim vaRecursSel As String = ""    'recurs de visualització modo recurs
     Dim vaColorSel As Color = Color.Empty   'color del recurs de visualització modo recurs
 
-    Dim vaToolTip1 As New ToolTip   'per mostrar missatges sobre el control
+    ReadOnly vaToolTip1 As New ToolTip   'per mostrar missatges sobre el control
     Dim vaReformateja As Boolean    'per determinar si cal reformatejar el control abans de Paint
     Dim vaPuntClick As Point        'per determinar on hem fet mousedown en coordenades del control
     Dim vaAjustBorder As Integer = 0  'per ajustar les coordenades dels punts del control segons el borderstyle
 
     Dim vaNElementsCella As Dictionary(Of Point, ElementsCella) 'estructura per controlar quants elements hi ha abans en una mateixa cel·la del mes
 
-    Dim vaFontDone As Font = New Font(Font, FontStyle.Bold)     'per marcar feines fetes
-    Dim vaFontPast As Font = New Font(Font, FontStyle.Italic)    'per marcar feines passades
-    Dim vaFontDonePast As Font = New Font(Font, FontStyle.Italic Or FontStyle.Bold) 'per marcar feines fetes passades
+    Dim vaFontDone As New Font(Font, FontStyle.Bold)     'per marcar feines fetes
+    Dim vaFontPast As New Font(Font, FontStyle.Italic)    'per marcar feines passades
+    Dim vaFontDonePast As New Font(Font, FontStyle.Italic Or FontStyle.Bold) 'per marcar feines fetes passades
 
     'emmagatzemament / inicialitzacio de valors de les propietats 
     Dim prColorLiniesH As Color = SystemColors.Control
@@ -476,11 +476,11 @@ Public Class PlaniGrid
 
     Dim prPeriodeMinimMinuts As Integer = 30                        'per visualitzacio coordenada Y de la graella
 
-    Dim prHoraIniciActivitat As TimeSpan = New TimeSpan(0, 0, 0)    'per definir la finestra d'hores a tractar
-    Dim prHoraFiActivitat As TimeSpan = New TimeSpan(24, 0, 0)
+    Dim prHoraIniciActivitat As New TimeSpan(0, 0, 0)    'per definir la finestra d'hores a tractar
+    Dim prHoraFiActivitat As New TimeSpan(24, 0, 0)
 
-    Dim prHoraIniciDinar As TimeSpan = New TimeSpan(13, 0, 0)       'per marcar la finestra d'hores del dinar
-    Dim prHoraFiDinar As TimeSpan = New TimeSpan(15, 0, 0)
+    Dim prHoraIniciDinar As New TimeSpan(13, 0, 0)       'per marcar la finestra d'hores del dinar
+    Dim prHoraFiDinar As New TimeSpan(15, 0, 0)
 
     Dim prUltimDiaLaborable As System.DayOfWeek = System.DayOfWeek.Saturday  'de la setmana
 
@@ -1325,7 +1325,7 @@ Public Class PlaniGrid
         Dim auxPGRecursos As Dictionary(Of String, Color)
         Dim auxStr As String
         Dim UpPoint As Point
-        Dim minTimeSpan As TimeSpan = New TimeSpan(0, MinutesGap, 0)
+        Dim minTimeSpan As New TimeSpan(0, MinutesGap, 0)
         Dim auxPGRecurs As PGResource
         Dim auxReturn As PGReturnCode
 
@@ -1599,14 +1599,6 @@ sortir:
                     Else
                         e.Effect = DragDropEffects.Move
                     End If
-
-                    'obtenim el recurs sobre el que estem (mode dia)
-                    auxRecurs = ObtenirRecursSeleccio(auxPunt)
-                    If auxRecurs.Name = "" Then
-                        auxStr = IIf(vaRecursSel = "", "", " " & T("de") & " '" & vaRecursSel & "'") & " " & T("a") & " " & Chr(216)
-                    Else
-                        auxStr = IIf(vaRecursSel = "", "", " " & T("de") & " '" & vaRecursSel & "'") & " " & T("a") & " '" & auxRecurs.Name & "'"
-                    End If
                 Else
                     e.Effect = DragDropEffects.All
                 End If
@@ -1653,7 +1645,7 @@ sortir:
 
         'scroll a la dreta nomes si venim de l'esquerra
         If e.X > vaPuntDragAnt.X And auxInt > 0 Then
-            vaScrollPos.X = vaScrollPos.X + (auxInt * 3)
+            vaScrollPos.X += (auxInt * 3)
             If vaScrollPos.X > (vpNroColumnes * vpAmpleColumna + GridPanel.Left) - Width + SystemInformation.VerticalScrollBarWidth Then
                 vaScrollPos.X = (vpNroColumnes * vpAmpleColumna + GridPanel.Left) - Width + SystemInformation.VerticalScrollBarWidth
             End If
@@ -1665,7 +1657,7 @@ sortir:
         auxInt = auxPos.X - (GridPanel.Left + SystemInformation.VerticalScrollBarWidth)
         'scroll a l'esquerra nomes si venim de la dreta
         If e.X < vaPuntDragAnt.X And auxInt < 0 Then
-            vaScrollPos.X = vaScrollPos.X + auxInt
+            vaScrollPos.X += auxInt
             If vaScrollPos.X < 0 Then vaScrollPos.X = 0
             GridPanel.AutoScrollPosition = vaScrollPos
             Invalidate()
@@ -1675,7 +1667,7 @@ sortir:
         'scroll avall nomes si venim de dalt
         auxInt = auxPos.Y - Height + SystemInformation.HorizontalScrollBarHeight
         If e.Y > vaPuntDragAnt.Y And auxInt > 0 Then
-            vaScrollPos.Y = vaScrollPos.Y + (auxInt * 3)
+            vaScrollPos.Y += (auxInt * 3)
             If vaScrollPos.Y > (vpNroFiles * IIf(VisualizationMode = PGMode.Month, vpAltFilaMes, vpAltFila) + GridPanel.Top) - Height + SystemInformation.HorizontalScrollBarHeight Then
                 vaScrollPos.Y = (vpNroFiles * IIf(VisualizationMode = PGMode.Month, vpAltFilaMes, vpAltFila) + GridPanel.Top) - Height + SystemInformation.HorizontalScrollBarHeight
             End If
@@ -1687,7 +1679,7 @@ sortir:
         'scroll a dalt nomes si venim de baix
         auxInt = auxPos.Y - (GridPanel.Top + SystemInformation.VerticalScrollBarWidth)
         If e.Y < vaPuntDragAnt.Y And auxInt < 0 Then
-            vaScrollPos.Y = vaScrollPos.Y + auxInt
+            vaScrollPos.Y += auxInt
             If vaScrollPos.Y < 0 Then vaScrollPos.Y = 0
             GridPanel.AutoScrollPosition = vaScrollPos
             Invalidate()
@@ -2059,7 +2051,6 @@ sortir:
     End Sub
 
     Private Sub GridPanel_PreviewKeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.PreviewKeyDownEventArgs) Handles GridPanel.PreviewKeyDown
-        Dim auxdate As Date = Date.MinValue
         Dim auxPGElement As PGElement
         Dim auxTimeSpanV As TimeSpan
         Dim auxTimeSpanH As TimeSpan
@@ -2070,6 +2061,7 @@ sortir:
         'si mode mes 
         If VisualizationMode = PGMode.Month Then
 
+            Dim auxdate As Date
             'actualitzem la data seleccionada
             Select Case e.KeyValue
                 Case Keys.Left '37 'left
@@ -2698,10 +2690,12 @@ sortir:
                                 auxheight = Font.Height
                                 auxelementcella.tamany.Width = auxwidth
                                 auxelementcella.tamany.Height = auxheight
-                                auxelementcella.elements = New List(Of String)
-                                auxelementcella.elements.Add(auxstr)
-                                auxelementcella.fets = New List(Of Boolean)
-                                auxelementcella.fets.Add(pElement.Done)
+                                auxelementcella.elements = New List(Of String) From {
+                                    auxstr
+                                }
+                                auxelementcella.fets = New List(Of Boolean) From {
+                                    pElement.Done
+                                }
                                 vaNElementsCella.Add(auxPuntIni, auxelementcella)
                             End If
 
@@ -3250,17 +3244,10 @@ sortir:
         Dim llapisLiniesCap As System.Drawing.Pen
         Dim i As Integer
         Dim brochaTexteCap, brochaCap As System.Drawing.Brush
-        Dim auxFontBold As Font
         Dim auxTexte As String
         Dim auxDataDia1 As DateTime = DateSerial(Year(DisplayDate), Month(DisplayDate), 1)
         Dim auxData As Date
         Dim PosY As Integer
-
-        Try
-            auxFontBold = New Font(Font, FontStyle.Bold)
-        Catch ex As Exception
-            auxFontBold = Font
-        End Try
 
         'creem les eines de dibuix
         llapisCap = New System.Drawing.Pen(HeaderFontColor)
@@ -3370,7 +3357,7 @@ sortir:
         Dim auxdata As DateTime
         Dim auxtime1, auxtime2 As TimeSpan
         Dim auxint1, auxint2 As Integer
-        Dim auxelement As PGElement = New PGElement(pPGElement) 'per no alterar pPGElement
+        Dim auxelement As New PGElement(pPGElement) 'per no alterar pPGElement
         Dim auxDuradaTotal As TimeSpan = PGElementGetDuration(auxelement)
 
         If prPermetreElementsEntreDies Then
@@ -3394,7 +3381,7 @@ sortir:
                     'si hora inici en periode habil ===>
                     'posicionem la data/hora inicial a l'hora inici activitat i adaptem pdurada en consequencia
                     auxdata = DateAdd(DateInterval.Minute, Fix(auxtime1.TotalMinutes), auxelement.Starts)
-                    auxDuradaTotal = auxDuradaTotal - auxtime1
+                    auxDuradaTotal -= auxtime1
                 End If
             End If
 
@@ -3413,7 +3400,7 @@ sortir:
             'si final a horainiciperiode --> horafiperiode del dia anterior
             If auxdata.TimeOfDay = prHoraIniciActivitat Then
                 auxdata = DateAdd(DateInterval.Day, -1, auxdata.Date)
-                auxdata = auxdata + prHoraFiActivitat
+                auxdata += prHoraFiActivitat
             End If
         Else
             'no tenim en compte l'horari
@@ -3863,7 +3850,6 @@ sortir:
                         dr("c1") = T(Mesos(DisplayDate.Month - 1)) & " " & DisplayDate.ToString("yyyy")
                     Else
                         'obtenim la data del dia i de la setmana de la DataActual
-                        auxdata = DateAdd(DateInterval.Day, (i - 1) + IIf(DayOfWeek.Monday - DisplayDate.DayOfWeek > 0, DayOfWeek.Monday - DisplayDate.DayOfWeek - 7, DayOfWeek.Monday - DisplayDate.DayOfWeek), DisplayDate)
                         dr(auxtxt) = T(DiesSetmana(DateAdd(DateInterval.Day, (i - 1) + IIf(DayOfWeek.Monday - DisplayDate.DayOfWeek > 0, DayOfWeek.Monday - DisplayDate.DayOfWeek - 7, DayOfWeek.Monday - DisplayDate.DayOfWeek), DisplayDate).DayOfWeek))
                     End If
 

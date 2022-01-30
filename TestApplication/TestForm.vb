@@ -1,8 +1,7 @@
 ﻿Friend Class TestForm
-
-    Dim rand As New Random
+    ReadOnly rand As New Random
     Dim randomcolor As Color
-    Dim colorsrecursos As New List(Of Color)
+    ReadOnly colorsrecursos As New List(Of Color)
     Dim comptaIds As Long = 1
     Private Source As Control
 
@@ -39,9 +38,7 @@
     End Sub
 
     Private Sub ListBox1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox1.MouseDown
-        Dim auxstr As String = ""
         Dim auxPGElement As PlaniSoftwareControlLibrary.PlaniGrid.PGElement
-        'Dim auxPGRecurs As PlaniGrid.PlaniGrid.PGResource
         Dim auxPGRecursos As Dictionary(Of String, Color)
         Dim returnvalue As System.Windows.Forms.DragDropEffects
 
@@ -84,7 +81,7 @@
 
     End Sub
 
-    Private Sub aag_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles aag.CheckedChanged
+    Private Sub Aag_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles aag.CheckedChanged
         PlaniGrid1.SnapToGrid = aag.Checked
     End Sub
 

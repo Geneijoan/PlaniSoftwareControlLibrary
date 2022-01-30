@@ -1,14 +1,13 @@
 ﻿Public Class PlaniCalendar
 
     Public Event DateChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DateRangeEventArgs)
+    ReadOnly mesos() As String = {"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"}
+    ReadOnly meses() As String = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
+    ReadOnly months() As String = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
 
-    Dim mesos() As String = {"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"}
-    Dim meses() As String = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
-    Dim months() As String = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
-
-    Dim dies() As String = {"dl", "dm", "dc", "dj", "dv", "ds", "dg"}
-    Dim dias() As String = {"lun", "mar", "mié", "jue", "vie", "sáb", "dom"}
-    Dim days() As String = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"}
+    ReadOnly dies() As String = {"dl", "dm", "dc", "dj", "dv", "ds", "dg"}
+    ReadOnly dias() As String = {"lun", "mar", "mié", "jue", "vie", "sáb", "dom"}
+    ReadOnly days() As String = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"}
 
     Dim prLanguage As Idioma = Idioma.Català
 
